@@ -68,7 +68,8 @@ model Note {
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
-  video     Video   @relation(field
+  videoId   String
+  video     Video   @relation(fields: [videoId], references: [id])
 }
 
 model Video {
@@ -78,6 +79,6 @@ model Video {
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
-  note    Note[]
+  note      Note[]
 }
 

@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   });
   return {
-    props: post,
+    props: video,
   };
 };
 const Post: React.FC<PostProps> = (props) => {
