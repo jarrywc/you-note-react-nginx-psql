@@ -5,7 +5,7 @@ import Post, { PostProps } from "../components/Post"
 import prisma from '../lib/prisma'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const feed = await prisma.post.findMany({
+  const feed = await prisma.note.findMany({
     where: { published: true },
     include: {
       author: {

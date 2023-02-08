@@ -2,7 +2,7 @@ import React from "react";
 import Router from "next/router";
 import ReactMarkdown from "react-markdown";
 
-export type PostProps = {
+export type VideoProps = {
   id: string;
   title: string;
   author: {
@@ -13,7 +13,7 @@ export type PostProps = {
   published: boolean;
 };
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+const Video: React.FC<{ post: VideoProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
   return (
     <div onClick={() => Router.push("/video/[id]", `/p/${post.id}`)}>

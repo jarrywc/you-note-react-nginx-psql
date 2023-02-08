@@ -31,3 +31,5 @@ Important Files
 
 [NextAuth](https://next-auth.js.org/getting-started/example)
 
+### Docker
+
