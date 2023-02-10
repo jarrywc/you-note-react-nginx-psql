@@ -47,7 +47,7 @@ const Draft: React.FC = () => {
                         value={content}
                     />
                     <input disabled={!content || !title} type="submit" value="Create" />
-                    <a className="back" href="#" onClick={() => Router.push('/')}>
+                    <a className="back" href="services/app/you-note/components#" onClick={() => Router.push('/')}>
                         or Cancel
                     </a>
                 </form>

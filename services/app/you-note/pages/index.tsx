@@ -3,9 +3,10 @@ import { GetStaticProps } from "next"
 import Layout from "../components/Layout"
 import Post, { PostProps } from "../components/Post"
 import prisma from '../lib/prisma'
+import { Note } from '../components/Note'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const feed = await prisma.note.findMany({
+  const note = await prisma.note.findMany({
     where: { published: true },
     include: {
       author: {
@@ -14,7 +15,7 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   });
   return {
-    props: { feed },
+    props: { note },
     revalidate: 10,
   };
 };
@@ -29,9 +30,9 @@ const Blog: React.FC<Props> = (props) => {
       <div className="page">
         <h1>Public Feed</h1>
         <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
+          {props.feed.map((note) => (
+            <div key={note.id} className="post">
+              <Note note={note} />
             </div>
           ))}
         </main>

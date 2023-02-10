@@ -6,7 +6,7 @@ import { PostProps } from "../../components/Post"
 import prisma from '../../lib/prisma'
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const post = await prisma.video.findUnique({
+  const video = await prisma.video.findUnique({
     where: {
       id: String(params?.id),
     },
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     props: video,
   };
 };
-const Post: React.FC<PostProps> = (props) => {
+const Video: React.FC<PostProps> = (props) => {
   let title = props.title
   if (!props.published) {
     title = `${title} (Draft)`
@@ -33,7 +33,8 @@ const Post: React.FC<PostProps> = (props) => {
         <p>By {props?.author?.name || "Unknown author"}</p>
         <ReactMarkdown children={props.content} />
       </div>
-      <style jsx>{`
+      <style jsx>{
+        `
         .page {
           background: white;
           padding: 2rem;
@@ -53,9 +54,10 @@ const Post: React.FC<PostProps> = (props) => {
         button + button {
           margin-left: 1rem;
         }
-      `}</style>
+        `
+      }</style>
     </Layout>
   )
 }
 
-export default Post
+export default Video

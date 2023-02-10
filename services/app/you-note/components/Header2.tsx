@@ -3,14 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
-import {
-    MDBContainer,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBBtn,
-    MDBInputGroup
-} from 'mdb-react-ui-kit';
-
 
 const Header: React.FC = () => {
     const router = useRouter();
@@ -203,15 +195,17 @@ const Header: React.FC = () => {
     }
 
     return (
-        <MDBNavbar light bgColor='light'>
-            <MDBContainer fluid>
-                <MDBNavbarBrand>Navbar</MDBNavbarBrand>
-                <MDBInputGroup tag="form" className='d-flex w-auto mb-3'>
-                    <input className='form-control' placeholder="Type query" aria-label="Search" type='Search' />
-                    <MDBBtn outline>Search</MDBBtn>
-                </MDBInputGroup>
-            </MDBContainer>
-        </MDBNavbar>
+        <nav>
+            {left}
+            {right}
+            <style jsx>{`
+        nav {
+          display: flex;
+          padding: 2rem;
+          align-items: center;
+        }
+      `}</style>
+        </nav>
     );
 };
 

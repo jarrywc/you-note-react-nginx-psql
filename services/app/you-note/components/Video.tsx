@@ -13,13 +13,13 @@ export type VideoProps = {
   published: boolean;
 };
 
-const Video: React.FC<{ post: VideoProps }> = ({ post }) => {
-  const authorName = post.author ? post.author.name : "Unknown author";
+const Video: React.FC<{ video: VideoProps }> = ({ video }) => {
+  const authorName = video.author ? video.author.name : "Unknown author";
   return (
-    <div onClick={() => Router.push("/video/[id]", `/p/${post.id}`)}>
-      <h2>{post.title}</h2>
+    <div onClick={() => Router.push("/video/[id]", `/p/${video.id}`)}>
+      <h2>{video.title}</h2>
       <small>By {authorName}</small>
-      <ReactMarkdown children={post.content} />
+      <ReactMarkdown children={video.content} />
       <style jsx>{`
         div {
           color: inherit;
@@ -30,4 +30,4 @@ const Video: React.FC<{ post: VideoProps }> = ({ post }) => {
   );
 };
 
-export default Post;
+export default Video;
