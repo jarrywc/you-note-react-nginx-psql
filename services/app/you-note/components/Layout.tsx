@@ -5,6 +5,8 @@ type Props = {
   children: ReactNode;
 };
 
+const
+
 const Layout: React.FC<Props> = (props) => (
   <div>
     <Header />

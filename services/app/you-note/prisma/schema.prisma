@@ -81,7 +81,9 @@ model Note {
   authorId  String?
   videoId   String
   video     Video   @relation(fields: [videoId], references: [id])
+  locationIndex Int @default(autoincrement())
 }
+
 
 model Video {
   id        String     @default(cuid()) @id

@@ -1,12 +1,14 @@
 import React from 'react';
+import { NoteProps} from "./Note";
+
 
 // THIS IS HOW THE NOTE WILL BE DISPLAYED
-export const NoteInfo = ({note}) => {
-    const {ID, video_id, location_index, content} = note;// || {};
+ const NoteInfo: React.FC<{note: NoteProps}> = ({note }) => {
+    const {id, videoId, locationIndex, content} = note;// || {};
 
     return note ? (
         <>
-            <li key={ID.toString()} about={"ID: "+ID+" video_id: "+video_id+" location_index "+location_index}>
+            <li key={id.toString()} about={"id: "+id+" videoId: "+videoId+" locationIndex "+locationIndex}>
                 <p style={{overflowWrap: "break-word",
                     wordWrap: "break-word",
                     hyphens: "auto"}}>{content}</p>
@@ -15,3 +17,5 @@ export const NoteInfo = ({note}) => {
         </>
     ): <p>Note loading...</p>;
 }
+
+export default NoteInfo;

@@ -24,13 +24,13 @@ type Props = {
   feed: PostProps[]
 }
 
-const Blog: React.FC<Props> = (props) => {
+const YouNote: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
         <h1>Public Feed</h1>
         <main>
-          {props.feed.map((note) => (
+          {props.note.map((note) => (
             <div key={note.id} className="post">
               <Note note={note} />
             </div>
@@ -42,7 +42,7 @@ const Blog: React.FC<Props> = (props) => {
           background: white;
           transition: box-shadow 0.1s ease-in;
         }
-
+ 
         .post:hover {
           box-shadow: 1px 1px 3px #aaa;
         }
@@ -55,4 +55,4 @@ const Blog: React.FC<Props> = (props) => {
   )
 }
 
-export default Blog
+export default YouNote

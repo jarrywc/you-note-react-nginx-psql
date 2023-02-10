@@ -11,9 +11,10 @@ export type VideoProps = {
   } | null;
   content: string;
   published: boolean;
+
 };
 
-const Video: React.FC<{ video: VideoProps }> = ({ video }) => {
+export const Video: React.FC<{ video: VideoProps }> = ({ video }) => {
   const authorName = video.author ? video.author.name : "Unknown author";
   return (
     <div onClick={() => Router.push("/video/[id]", `/p/${video.id}`)}>
@@ -30,4 +31,3 @@ const Video: React.FC<{ video: VideoProps }> = ({ video }) => {
   );
 };
 
-export default Video;

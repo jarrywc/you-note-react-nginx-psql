@@ -43,12 +43,12 @@ export const NoteList = ({
             {
                 listActive &&
                 list.map((note, i) => (
-                    <NoteInfo key={note.location_index }{...{ ['note']: note }} />
+                    <NoteInfo key={note.locationIndex }{...{ ['note']: note }} />
                 ))
             }
             {
                 includeEditor &&
-                <Note id={0} editor={true}/>
+                <Note note={} id={0} editor={true}/>
             }
             {/*<Outlet />*/}
         </>

@@ -1,14 +1,36 @@
 import React, {  useReducer, useState} from 'react';
+import Router from "next/router";
 import axios from "axios";
 import {MDBBtn, MDBBtnGroup, MDBCol, MDBContainer, MDBRow} from "mdb-react-ui-kit";
+import {VideoProps } from './Video'
+
+
+export type NoteProps = {
+    id: string;
+    title: string;
+    author: {
+        name: string;
+        email: string;
+    } | null;
+    content: string;
+    published: boolean;
+    videoId: string;
+    appendList: React.FC;
+    toggleList: React.FC;
+    listShow: boolean;
+    currentTime: string;
+    locationIndex: string;
+
+};
+
 
 // THIS IS HOW THE NOTE WILL BE DISPLAYED
-export const Note = ( { video_id, note, id, appendList=()=>{}, toggleList=()=>{}, listShow, currentTime } ) => {
+export const Note: React.FC<{note: NoteProps}> = ({ note} ) => {
 
-    const noteTemplate = {ID:0, video_id:video_id, content:"", location_index:1 }
+    const noteTemplate = {id:0, videoId:note.videoId, content:"", locationIndex:1 }
     // ID must stay constant, user cannot modify. The ID is retrieved from video prop or URL params or template
 
-    const { ID } = note || id; // || videoTemplate;
+    const { id, videoId, listShow, } = note
 
     // Data is the active state of the form field while editing but before saving to DB
     const [data, setData] = useState(noteTemplate);
@@ -27,21 +49,21 @@ export const Note = ( { video_id, note, id, appendList=()=>{}, toggleList=()=>{}
     const contentTimeStamp = async () => {
         // Timestamp Enabled ?? What to do....
         if (addTS){
-            let time = " : "+currentTime.toString();
+            let time = " : "+note.currentTime.toString();
             let send = data.content+ time;
             console.log("TS Status: "+addTS+"with CONTENT:: "+ send);
             let note = {ID:0, video_id:noteTemplate.video_id, content:send, location_index:1 }
             //setData(note);
             // Log it
-            console.log("Data About to send ID "+data.ID+" and content "+data.content);
+            console.log("Data About to send ID "+data.id+" and content "+data.content);
             return note;
         } else {
             let send = data.content
             console.log("TS Status: "+addTS+"with CONTENT:: "+ send);
-            let note = {ID:0, video_id:noteTemplate.video_id, content:send, location_index:1 }
+            let note = {ID:0, video_id:noteTemplate.videoId, content:send, location_index:1 }
             //setData(note);
             // Log it
-            console.log("Data About to send ID "+data.ID+" and content "+data.content);
+            console.log("Data About to send ID "+data.id+" and content "+data.content);
             return note;
         }
 
@@ -60,14 +82,14 @@ export const Note = ( { video_id, note, id, appendList=()=>{}, toggleList=()=>{}
 
     const appendListParent = async (confirmedNote)=>{
         if (confirmedNote !== "Blank Note") {// Add note to the list
-            const new_note = await appendList(confirmedNote)
+            const new_note = await note.appendList(confirmedNote)
             console.log("Note || Added to List");
             console.log(new_note);
             // let dataTemp = {
             //     ID:0, content:"", video_id:data.video_id, location_index: 1
             // }
             resetDataContent();
-            console.log("DATA SHOULD RESET TO ID" + data.ID + " Content " + data.content);
+            console.log("DATA SHOULD RESET TO ID" + data.id + " Content " + data.content);
         } else {
             alert("Could't send blank note");
         }
@@ -75,7 +97,7 @@ export const Note = ( { video_id, note, id, appendList=()=>{}, toggleList=()=>{}
     }
     // Just some logging
     console.log("NoteInfo");
-    console.log("id: "+ID)
+    console.log("id: "+id)
 
     // Here is the magic that make Enter (or CRL+Enter) submit note line item
     function KeyPress(e) {
@@ -89,7 +111,7 @@ export const Note = ( { video_id, note, id, appendList=()=>{}, toggleList=()=>{}
     const [buttonText, setButtonText] = useState("Hide List");
     const toggleListActive = () => {
         console.log("App Video List changed from "+listShow);
-        toggleList(!listShow);
+        note.toggleList(!listShow);
         console.log(" to "+listShow);
         setButtonText(listShow?'Hide List':'Show List')
     }

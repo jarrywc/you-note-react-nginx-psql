@@ -1,4 +1,4 @@
-// pages/p/[id].tsx
+// pages/p/[id].ts
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import ReactMarkdown from 'react-markdown';
@@ -31,7 +31,7 @@ async function publishPost(id: string): Promise<void> {
     await Router.push('/');
 }
 
-// pages/p/[id].tsx
+// pages/p/[id].ts
 
 async function deletePost(id: string): Promise<void> {
     await fetch(`/api/post/${id}`, {
