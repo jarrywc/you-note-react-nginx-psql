@@ -56,6 +56,11 @@ const Drafts: React.FC<Props> = (props) => {
                             <Post post={post} />
                         </div>
                     ))}
+                    {props.drafts.map((post) => (
+                        <div key={post.id} className="post">
+                            <Post post={post} />
+                        </div>
+                    ))}
                 </main>
             </div>
             <style jsx>{`
